@@ -18,5 +18,8 @@ dishes = Task("Do the dishes", jack, 4)
 task_repository.save(dishes)
 
 
+feed_cat = Task("Feed the cat", jack, 3)
+task_repository.save(feed_cat)
+
 
 pdb.set_trace()

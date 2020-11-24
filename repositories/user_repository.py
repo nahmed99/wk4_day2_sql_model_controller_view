@@ -44,14 +44,14 @@ def select(id):
     return user
 
 
-# DELETE - delete one
+# DELETE - delete all
 
 def delete_all():
     sql = "DELETE  FROM users" 
     run_sql(sql)
 
 
-# DELETE - delete all
+# DELETE - delete one
 def delete(id):
     sql = "DELETE  FROM users WHERE id = %s" 
     values = [id]
