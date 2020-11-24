@@ -12,7 +12,11 @@ jack = User("Jack", "Jarvis")
 user_repository.save(jack)
 
 victor = User("Victor", "McDade")
-user_repository.save(jack)
+user_repository.save(victor)
+
+dishes = Task("Do the dishes", jack, 4)
+task_repository.save(dishes)
+
 
 
 pdb.set_trace()
