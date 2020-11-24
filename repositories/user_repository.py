@@ -39,23 +39,22 @@ def select(id):
         user = User(result['first_name'], result['last_name'], result['id'] )
     return user
 
-# UPDATE
+
+# DELETE - delete one
 
 def delete_all():
     sql = "DELETE  FROM users" 
     run_sql(sql)
 
-# DELETE - delete one
 
+# DELETE - delete all
 def delete(id):
     sql = "DELETE  FROM users WHERE id = %s" 
     values = [id]
     run_sql(sql, values)
 
 
-
-# DELETE - delete all
-
+# UPDATE
 def update(user):
     sql = "UPDATE tasks SET (first_name, last_name) = (%s, %s) WHERE id = %s"
     values = [user.first_name, user.last_name, user.id]
