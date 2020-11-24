@@ -22,7 +22,9 @@ def select_all():
     sql = "SELECT * FROM users"
     results = run_sql(sql)
 
+    # create a list of user objects, from list of user dictionaries that have come back from run_sql.
     for row in results:
+        # create a User object and then assign it to the user variable
         user = User(row['first_name'], row['last_name'], row['id'] )
         users.append(user)
     return users 
@@ -35,6 +37,7 @@ def select(id):
     values = [id] 
     result = run_sql(sql, values)[0]
     
+    # Check if the user exists
     if result is not None:
         user = User(result['first_name'], result['last_name'], result['id'] )
     return user
@@ -56,6 +59,6 @@ def delete(id):
 
 # UPDATE
 def update(user):
-    sql = "UPDATE tasks SET (first_name, last_name) = (%s, %s) WHERE id = %s"
+    sql = "UPDATE users SET (first_name, last_name) = (%s, %s) WHERE id = %s"
     values = [user.first_name, user.last_name, user.id]
     run_sql(sql, values) 
