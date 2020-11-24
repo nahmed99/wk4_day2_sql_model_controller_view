@@ -62,3 +62,10 @@ def update(user):
     sql = "UPDATE users SET (first_name, last_name) = (%s, %s) WHERE id = %s"
     values = [user.first_name, user.last_name, user.id]
     run_sql(sql, values) 
+
+
+def get_tasks(user):
+    sql = "SELECT * FROM tasks WHERE user_id = %s"
+    values = [user.id]
+    run_sql(sql, values)
+    
