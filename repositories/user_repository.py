@@ -1,5 +1,6 @@
 from db.run_sql import run_sql
 from models.user import User
+from models.task import Task
 
 
 # CREATE
@@ -67,5 +68,18 @@ def update(user):
 def get_tasks(user):
     sql = "SELECT * FROM tasks WHERE user_id = %s"
     values = [user.id]
-    run_sql(sql, values)
+    results = run_sql(sql, values)
+
+    users_tasks = []
+
+    for row_data in results:
+        task = Task(row_data["description"], 
+                    user, 
+                    row_data["duration"],
+                    row_data["completed"],
+                    row_data["id"]
+        )
+        users_tasks.append(task)
+
+    return users_tasks
     
