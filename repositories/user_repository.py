@@ -1,5 +1,5 @@
 from db.run_sql import run_sql
-from models.user import user
+from models.user import User
 
 
 # CREATE
@@ -16,7 +16,47 @@ def save(user):
 
 
 # READ - select all
+def select_all():  
+    users = [] 
+
+    sql = "SELECT * FROM users"
+    results = run_sql(sql)
+
+    for row in results:
+        user = User(row['first_name'], row['last_name'], row['id'] )
+        users.append(user)
+    return users 
+
+
 # READ - select one (by id)
+def select(id):
+    user = None
+    sql = "SELECT * FROM users WHERE id = %s"  
+    values = [id] 
+    result = run_sql(sql, values)[0]
+    
+    if result is not None:
+        user = User(result['first_name'], result['last_name'], result['id'] )
+    return user
+
 # UPDATE
+
+def delete_all():
+    sql = "DELETE  FROM users" 
+    run_sql(sql)
+
 # DELETE - delete one
+
+def delete(id):
+    sql = "DELETE  FROM users WHERE id = %s" 
+    values = [id]
+    run_sql(sql, values)
+
+
+
 # DELETE - delete all
+
+def update(user):
+    sql = "UPDATE tasks SET (first_name, last_name) = (%s, %s) WHERE id = %s"
+    values = [user.first_name, user.last_name, user.id]
+    run_sql(sql, values) 
